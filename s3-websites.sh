@@ -3,17 +3,17 @@
 echo "running $0"
 #Bucket 1 will be the public-facing website
 #Bucket 2 will be a datasource for XHR 
-S3_BUCKET_1=<add bucket name e.g website.your-route53-hosted-zone>
-S3_BUCKET_2=<add bucket name e.g datasource.your-route53-hosted-zone>
+S3_BUCKET_1=georgeswebsite.gsat.technology
+S3_BUCKET_2=georgesdatasource.gsat.technology
 
 #ID of your hosted zone
-HOSTED_ZONE_ID=<route 53 hosted zone id>
+HOSTED_ZONE_ID=Z1CKJWKDX78JO6
 
 #ID of S3 Hosted Zone ID
 #For values, refer to http://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region
-ROUTE_53_HOSTED_ZONE_ID=<e.g. Z1WCIGYICN2BYD for Sydney>
+ROUTE_53_HOSTED_ZONE_ID=Z1WCIGYICN2BYD
 
-REGION=<e.g. ap-southeast-1>
+REGION=ap-southeast-2
 
 #temporary locations for 'file://' 
 BUCKET_POLICY_1=./bucket_policy_1.json
@@ -174,10 +174,9 @@ EOF
 
 
   #Allow cors on bucket 2
-  echo "about to put cors"
   aws s3api put-bucket-cors --bucket $S3_BUCKET_2 \
                             --cors-configuration file://$WEBSITE_2_CORS
-  echo "cors done?"
+
 
   #upload index.html and error.html files to bucket 1
   aws s3 cp ./index.html s3://$S3_BUCKET_1
