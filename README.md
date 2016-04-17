@@ -1,4 +1,3 @@
-
 # S3 public website demonstration
 A scripted demo of using the AWS CLI to create two S3 'website enabled' sites. The first website is a public facing site with a Google Map view. The second website is public facing but is intended as a remote datasource for the first website to request data from.
 
@@ -9,14 +8,15 @@ Requirements
 - A Route53 hosted zone is required
 
 Setup
-- edit s3-website.sh to edit variables at start of script (see comments in script)
+- edit `s3-website.sh` to edit variables at start of script (see comments in script)
 - To find `ROUTE_53_HOSTED_ZONE_ID` go to http://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region and find table under the _Amazon Simple Storage Service Website Endpoints_ section
-- Edit index.html and change `map.data.loadGeoJson('http://<datasource-bucket/sample.geojson');` so that the domain is as per your value in `S3_BUCKET_2` in s3-websites.sh
+- Edit index.html and change `map.data.loadGeoJson('http://<datasource-bucket/sample.geojson');` so that the domain is as per your value in `S3_BUCKET_2` in `s3-websites.sh`
 
 #### Create
 ```bash
 ./s3-websites.sh create
 ```
+After create, public facing S3-hosted websites should be accessible over the internet and display a nice map with some geojson.
 
 #### Teardown
 ```bash
